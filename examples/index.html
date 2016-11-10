@@ -1,0 +1,85 @@
+<html>
+<head>
+	<title>Script output streaming</title>
+</head>
+<body>
+<style scoped>
+	* {
+		font: 12px "Courier New", serif;
+	}
+	a {
+		text-decoration: underline;
+		color: black;
+	}
+	a:hover {
+		color: darkred;
+	}
+	.container {
+		width: 800px;
+		margin: 10px auto;
+	}
+	.source {
+		float: left;
+		width: 500px;
+	}
+	.demo {
+		float: right;
+		width: 290px;
+	}
+	#demo-content {
+		height: 500px;
+		border: 1px solid #b2ac9c;
+		background: #e9e2ce;
+		color: #444444;
+		padding: 10px;
+	}
+	#test {
+		display: inline-block;
+		float: right;
+	}
+	pre {
+		padding: 10px;
+		background: #181818;
+		color: #f8f8f8;
+	}
+</style>
+
+<div class="container">
+	<div class="source">
+		<p>&nbsp;</p>
+
+		<p><a href="#" id="test">Start Streaming &gt;</a></p>
+	</div>
+
+	<div class="demo">
+		<p>Output</p>
+		<div id="demo-content"></div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	document.getElementById('test').onclick = function() {
+		read_stream();
+	};
+
+	function read_stream() {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'stream_file_content.php', true);
+
+		xhr.onprogress = function(e) {
+			document.getElementById('demo-content').innerText = e.currentTarget.responseText;
+			console.log(e.currentTarget.responseText);
+		};
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				console.log('Completed!');
+			}
+		};
+
+		xhr.send();
+	}
+</script>
+</body>
+</html>

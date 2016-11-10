@@ -1,0 +1,17 @@
+{
+  "name": "jiromm/stream",
+  "description": "Stream script content to browser",
+  "minimum-stability": "dev",
+  "license": "MIT License",
+  "authors": [
+    {
+      "name": "Aram Baghdasaryan",
+      "email": "xquack@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Jiromm\\": "src/"
+    }
+  }
+}
