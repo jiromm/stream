@@ -42,6 +42,8 @@ class Stream
             $startCallback();
         }
 
+        $this->stream->run();
+
         while ($line = stream_get_line($this->stream->getResource(), 65535, PHP_EOL)) {
             $callback = $this->callback;
             $callback($line);

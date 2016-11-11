@@ -21,6 +21,7 @@
 	.source {
 		float: left;
 		width: 500px;
+		text-align: right;
 	}
 	.demo {
 		float: right;
@@ -33,9 +34,9 @@
 		color: #444444;
 		padding: 10px;
 	}
-	#test {
+	#stream-local,
+	#stream-remote {
 		display: inline-block;
-		float: right;
 	}
 	pre {
 		padding: 10px;
@@ -48,7 +49,9 @@
 	<div class="source">
 		<p>&nbsp;</p>
 
-		<p><a href="#" id="test">Start Streaming &gt;</a></p>
+		<p><a href="#" id="stream-local">Stream local script content &gt;</a></p>
+
+		<p><a href="#" id="stream-remote">Stream remote script content &gt;</a></p>
 	</div>
 
 	<div class="demo">
@@ -59,13 +62,17 @@
 
 
 <script type="text/javascript">
-	document.getElementById('test').onclick = function() {
-		read_stream();
+	document.getElementById('stream-local').onclick = function() {
+		read_stream('stream_local_content.php');
 	};
 
-	function read_stream() {
+	document.getElementById('stream-remote').onclick = function() {
+		read_stream('stream_remote_content.php');
+	};
+
+	function read_stream(url) {
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'stream_file_content.php', true);
+		xhr.open('GET', url, true);
 
 		xhr.onprogress = function(e) {
 			document.getElementById('demo-content').innerText = e.currentTarget.responseText;
