@@ -5,4 +5,4 @@ Stream script output to browser
 
 `php -S 0.0.0.0:8080 -t examples/`
 
-Open in browser 0.0.0.0:8080
+Open in browser `http://0.0.0.0:8080/`
